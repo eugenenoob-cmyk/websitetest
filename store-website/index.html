@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Poultry | Farm Fresh</title>
+    <meta name="description" content="Order farm-fresh, premium poultry directly to your door.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Radix Icons -->
+    <script src="https://unpkg.com/@radix-ui/icons"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="sidebar-trigger" id="sidebarTrigger">
+                <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.22386 1.22386 11 1.5 11H13.5C13.7761 11 14 11.22386 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z"
+                        fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="logo-icon">
+                    <path
+                        d="M7.49998 1.99998C4.46241 1.99998 1.99998 4.46241 1.99998 7.49998C1.99998 10.5376 4.46241 13 7.49998 13C10.5376 13 13 10.5376 13 7.49998C13 4.46241 10.5376 1.99998 7.49998 1.99998ZM0.999977 7.49998C0.999977 3.91013 3.91013 0.999977 7.49998 0.999977C11.0898 0.999977 14 3.91013 14 7.49998C14 11.0898 11.0898 14 7.49998 14C3.91013 14 0.999977 11.0898 0.999977 7.49998ZM7.49998 8.49998C8.05226 8.49998 8.49998 8.05226 8.49998 7.49998C8.49998 6.94769 8.05226 6.50001 7.49998 6.50001C6.94769 6.50001 6.50001 6.94769 6.50001 7.49998C6.50001 8.05226 6.94769 8.49998 7.49998 8.49998Z"
+                        fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+                Ah Heng Fresh and Frozen Chicken & Duck
+            </div>
+        </div>
+        <button class="cart-trigger" id="cartTrigger">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </nav>
+
+    <!-- Navigation Sidebar -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    <aside class="nav-sidebar" id="navSidebar">
+        <div class="nav-sidebar-header">
+            <h3>Menu</h3>
+            <button class="close-btn" id="closeNav">&times;</button>
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link" onclick="closeNavSidebar()">About Us</a>
+            <a href="#shop" class="nav-link" onclick="closeNavSidebar()">Shop Now</a>
+            <a href="#faq" class="nav-link" onclick="closeNavSidebar()">Frequently Asked Questions</a>
+        </div>
+    </aside>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Farm Fresh Quality. <br>Delivered Daily.</h1>
+            <p>Experience the finest selection of premium poultry, responsibly sourced and prepared with care. Any
+                fresher, it was running yesterday.</p>
+            <button class="primary-btn"
+                onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})">Shop Now</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="content-section">
+            <div class="section-header">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <p>Welcome to Ah Heng Fresh and Frozen Chicken & Duck. We are dedicated to providing the highest quality
+                    poultry to our community. With years of experience and a commitment to freshness, we ensure that
+                    every product we deliver meets our strict standards of excellence.</p>
+            </div>
+        </section>
+
+        <section id="shop" class="shop-section">
+            <div class="section-header">
+                <h2>Our Selection</h2>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Product cards will be injected here by JS -->
+            </div>
+        </section>
+
+        <section id="faq" class="content-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-item">
+                <h4>What are your delivery hours?</h4>
+                <p>We deliver from Tuesday to Sunday! You can choose your preferred delivery time slot (Morning,
+                    Afternoon, or
+                    Evening) during checkout.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How much is the delivery?</h4>
+                <p>Delivery is $20 islandwide. </p>
+            </div>
+            <div class="faq-item">
+                <h4>Are we Halal certified?</h4>
+                <p>No, we are not Halal certified, but all our chickens are sourced from Halal slaughterhouses and
+                    slaughtered according to Islamic practices.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Are your products really fresh?</h4>
+                <p>Absolutely. As our motto says: "Any fresher, it was running yesterday." We process and deliver
+                    rapidly to ensure peak freshness.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How do I pay?</h4>
+                <p>When you checkout, your order details are securely sent to our WhatsApp. We will confirm your
+                    order and provide payment instructions (PayNow/PayLah!) there. Do note that orders will only be
+                    processed after payment is made.</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Sidebar overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-btn" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items injected here -->
+            <div class="empty-cart-message" id="emptyCart">Your cart is empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalVal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" disabled>Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3>Checkout Details</h3>
+                <button class="close-btn" id="closeCheckout">&times;</button>
+            </div>
+            <form id="checkoutForm" class="checkout-form">
+                <div class="form-group">
+                    <label for="customerName">Name</label>
+                    <input type="text" id="customerName" required placeholder="John Doe">
+                </div>
+                <!-- Delivery Date -->
+                <div class="form-group">
+                    <label for="deliveryDate">Delivery Date</label>
+                    <input type="date" id="deliveryDate" required>
+                </div>
+                <!-- Delivery Time -->
+                <div class="form-group">
+                    <label for="deliveryTime">Preferred Time</label>
+                    <select id="deliveryTime" required>
+                        <option value="" disabled selected>Select a time slot</option>
+                        <option value="Morning (8AM - 12PM)">Morning (8AM - 12PM)</option>
+                        <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress">Address</label>
+                    <textarea id="deliveryAddress" required placeholder="123 Main St..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Order via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
