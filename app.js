@@ -48,6 +48,15 @@ const products = [
         price: 7.50,
         description: 'Meaty, tender drumsticks. A family favorite for any day of the week.',
         image: 'assets/chicken_drumsticks.png'
+    },
+    {
+        id: 'p7',
+        name: 'Whole Chicken Leg',
+        price: 9.50,
+        description: 'Premium whole chicken leg, including thigh and drumstick. Perfect for roasting, braising, or grilling.',
+        image: 'assets/whole_chicken_leg.png',
+        skinOptions: ['With Skin', 'Skinless'],
+        cutOptions: ['Whole', 'Cut in half']
     }
 ];
 
