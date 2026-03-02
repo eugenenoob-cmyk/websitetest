@@ -56,6 +56,7 @@ const products = [
         description: 'Premium whole chicken leg, including thigh and drumstick. Perfect for roasting, braising, or grilling.',
         image: 'assets/whole_chicken_leg.png',
         skinOptions: ['With Skin', 'Skinless'],
+        boneOptions: ['With Bone', 'Boneless'],
         cutOptions: ['Whole', 'Cut in half']
     }
 ];
@@ -102,7 +103,7 @@ function renderProducts() {
                 <h3 class="product-title">${product.name}</h3>
                 <div class="product-price">$${product.price.toFixed(2)}</div>
                 <p class="product-desc">${product.description}</p>
-                ${(product.skinOptions || product.cutOptions) ? `
+                ${(product.skinOptions || product.boneOptions || product.cutOptions) ? `
                 <div class="product-options">
                     ${product.skinOptions ? `
                         <label for="skin-${product.id}">Skin:</label>
@@ -110,9 +111,16 @@ function renderProducts() {
                             ${product.skinOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
                         </select>
                     ` : ''}
+
+                    ${product.boneOptions ? `
+                        <label for="bone-${product.id}" style="${product.skinOptions ? 'margin-top: 0.25rem;' : ''}">Bone:</label>
+                        <select id="bone-${product.id}" class="option-select">
+                            ${product.boneOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    ` : ''}
                     
                     ${product.cutOptions ? `
-                        <label for="cut-${product.id}" style="${product.skinOptions ? 'margin-top: 0.25rem;' : ''}">Cut:</label>
+                        <label for="cut-${product.id}" style="${(product.skinOptions || product.boneOptions) ? 'margin-top: 0.25rem;' : ''}">Cut:</label>
                         <select id="cut-${product.id}" class="option-select">
                             ${product.cutOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
                         </select>
@@ -222,25 +230,29 @@ window.addToCart = function (productId) {
         skinOption = skinSelect.value;
     }
 
+    let boneOption = '';
+    const boneSelect = document.getElementById(`bone-${productId}`);
+    if (boneSelect) {
+        boneOption = boneSelect.value;
+    }
+
     let cutOption = '';
     const cutSelect = document.getElementById(`cut-${productId}`);
     if (cutSelect) {
         cutOption = cutSelect.value;
     }
 
-    let selectedOptionsText = '';
-    if (skinOption && cutOption) {
-        selectedOptionsText = `${skinOption}, ${cutOption}`;
-    }
+    const activeOptions = [skinOption, boneOption, cutOption].filter(Boolean);
+    const selectedOptionsText = activeOptions.join(', ');
 
-    const cartItemId = selectedOptionsText ? `${productId}-${skinOption}-${cutOption}` : productId;
-    const displayName = selectedOptionsText ? `${product.name} (${selectedOptionsText})` : product.name;
+    const cartItemId = activeOptions.length > 0 ? `${productId}-${activeOptions.join('-')}` : productId;
+    const displayName = activeOptions.length > 0 ? `${product.name} (${selectedOptionsText})` : product.name;
 
     const existingItem = cart.find(item => item.cartItemId === cartItemId);
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        cart.push({ ...product, cartItemId, displayName, quantity: 1, skinOption, cutOption });
+        cart.push({ ...product, cartItemId, displayName, quantity: 1, skinOption, boneOption, cutOption });
     }
 
     // Quick micro-animation on cart trigger
